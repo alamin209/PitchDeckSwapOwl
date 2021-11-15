@@ -1,8 +1,16 @@
-import { Body, Controller, Get, HttpStatus, Post, UseGuards } from '@nestjs/common';
-import { AdminAuthService } from '../services/auth.service';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
+import { AuthService } from '../services/auth.service';
 import { AuthDto } from '../dto/auth.dto';
 import {
-  ApiBadRequestResponse, ApiBearerAuth,
+  ApiBadRequestResponse,
+  ApiBearerAuth,
   ApiBody,
   ApiForbiddenResponse,
   ApiInternalServerErrorResponse,
@@ -16,8 +24,8 @@ import { AuthGuard } from '../../../common/guard/auth.guard';
 
 @ApiTags('auth')
 @Controller('/auth')
-export class AdminAuthController {
-  constructor(private readonly authService: AdminAuthService) {}
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
 
   @Post('/')
   @ApiResponse({ description: 'Successfully loggedin.', status: HttpStatus.OK })
@@ -30,7 +38,7 @@ export class AdminAuthController {
     return new PayloadResponseDTO({
       statusCode: HttpStatus.OK,
       message: 'Successfully logged in',
-      data: { auth },
+      data: { token: auth },
     });
   }
 

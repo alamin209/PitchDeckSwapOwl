@@ -11,7 +11,7 @@ import { ValidationException } from '../../../common/exceptions/validationExcept
 import { USER_JWT_SECRET } from '../../../common/configs/config';
 
 @Injectable()
-export class AdminAuthService {
+export class AuthService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
   async auth(auth: AuthDto): Promise<boolean> {
     try {

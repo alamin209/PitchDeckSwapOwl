@@ -4,7 +4,8 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 import { PayloadLoggingInterceptor } from './common/interceptors/payload-logging.interceptor';
 import { AuthModule } from './modules/auth/auth.module';
-export const ModuleList = [AuthModule];
+import { UserModule } from './modules/user/user.module';
+export const ModuleList = [AuthModule, UserModule];
 @Module({
   imports: [MongooseModule.forRoot(process.env.MONGO_URL), ...ModuleList],
   controllers: [],
